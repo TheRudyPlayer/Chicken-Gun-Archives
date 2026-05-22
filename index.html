@@ -298,9 +298,14 @@ header h1 {
         let media = '';
 
         if (post.type.startsWith('image')) {
-          media = `<img src="${post.data}" alt="${post.title}">`;
+          media = `
+            <img src="${post.data}" alt="${post.title}">
+          `;
         } else if (post.type.startsWith('video')) {
           media = `
+            <div style="padding:10px;background:#151515;color:#00ff99;font-weight:bold;border-bottom:1px solid #333;word-break:break-word;">
+              ▶ ${post.fileName || 'Video'}
+            </div>
             <video controls>
               <source src="${post.data}" type="${post.type}">
             </video>
@@ -346,6 +351,7 @@ header h1 {
           description,
           data: fileURL,
           type: file.type,
+          fileName: file.name,
           storagePath: `cgarchive/${fileName}`,
           date: Date.now()
         });
@@ -383,4 +389,4 @@ header h1 {
 
     renderPosts();
   </script></body>
-  </html>
+</html>
